@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>10秒チャレンジ</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script type="text/javascript">
+    var sec = 0;
+    var oneof10sec = 0;
+    var timer;
+    var state = '停';
+
+    function startbutton(){
+        if (state == '停'){
+            timer = setInterval(tick, 100);
+            state = '動';
+        }
+    }
+
+    function stopbutton(){
+        time = 10 - (sec + oneof10sec*0.1);
+
+        if (state == '動'){
+            clearInterval(timer);
+            state = '停';
+        }
+
+        if ( time == 0){
+            window.alert("Congratulation!!!!!");
+        } else if (-0.5 <= time && time <= 0.5){
+            window.alert("あと少し!!");
+        } else if (-1 <= time && time <= 1){
+            window.alert("もう少し頑張ろう!");
+        } else if(time < -1 || time > 1){
+            window.alert("頑張ろう!");
+        }
+        window.location.reload();
+    }
+
+    function tick() {
+        oneof10sec = oneof10sec + 1;
+        if (oneof10sec == 10) {
+            sec = sec + 1;
+            oneof10sec = 0;
+        }
+        document.getElementById('output-sec').innerHTML = sec;
+        document.getElementById('output-oneof10sec').innerHTML = oneof10sec;
+    }
+
+
+</script>
+</head>
+<body>
+<div style="text-align:center">
+<p style=" margin-top: 100px;"></p>
+<p style=" font-size: 30px;" >10秒ぴったりチャレンジ</p>
+<p style=" font-size: 50px;"><span style=" font-size: 50px;" id = "output-sec">0</span>.<span  id ="output-oneof10sec">0</span></p>
+<button onclick="startbutton()">スタート</button>
+<button onclick="stopbutton()">ストップ</button>
+<button onclick="window.close()">ページを閉じる</button>
+</div>
+</body>
+</html>
